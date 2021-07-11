@@ -64,7 +64,7 @@ button:active, .buttons a:active {
     box-shadow: none;
 }
 
-.resource, form {
+.resource, form, details {
     border: 1px solid black;
     border-radius: 3px;
     padding-left: 1em;
@@ -79,7 +79,6 @@ section > header {
 
 .categories {
     margin-top: 1em;
-    margin-bottom: 2em;
 }
 
 form input {
@@ -94,4 +93,18 @@ button {
     font-size: 1em;
     outline: none;
     border: none;
+}
+
+details {
+    padding: 1em;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+details > p:last-of-type {
+    margin-bottom: 0;
+}
+
+summary {
+    cursor: pointer;
 }
