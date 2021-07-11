@@ -2,43 +2,40 @@
 layout: default
 ---
 
-<body>
-    <script>
-        const citiesByName = {
-            {% for city in site.cities %}
-                "{{city.title}}": "{{city.slug}}",
-            {% endfor %}
-        };
-        function handleCitySelect(event) {
-            event.preventDefault();
-            const form = event.target;
-            const slug = citiesByName[form.city.value];
-            if (!slug) {
-                const error = document.getElementById('error');
-                error.innerHTML = "Please select a valid city name.";
-            } else {
-                window.location = window.location + slug;
-            }
-        }
-    </script>
-
-    <form onsubmit="handleCitySelect(event)">
-        <p>
-            <label>
-                City name:
-                <input name="city" list="cities" />
-            </label>
-        </p>
-
-        <p id="error"></p>
-
-        <button type="submit">Find alternatives to the police</button>
-    </form>
-
-    <datalist id="cities">
+<script>
+    const citiesByName = {
         {% for city in site.cities %}
-            <option value="{{ city.title }}">
+            "{{city.title}}": "{{city.slug}}",
         {% endfor %}
-    </datalist>
-</body>
-</html>
+    };
+    function handleCitySelect(event) {
+        event.preventDefault();
+        const form = event.target;
+        const slug = citiesByName[form.city.value];
+        if (!slug) {
+            const error = document.getElementById('error');
+            error.innerHTML = "Please select a valid city name.";
+        } else {
+            window.location = window.location + slug;
+        }
+    }
+</script>
+
+<form onsubmit="handleCitySelect(event)">
+    <p>
+        <label>
+            City name:
+            <input name="city" list="cities" />
+        </label>
+    </p>
+
+    <p id="error"></p>
+
+    <button type="submit">Find alternatives to the police</button>
+</form>
+
+<datalist id="cities">
+    {% for city in site.cities %}
+        <option value="{{ city.title }}">
+    {% endfor %}
+</datalist>
