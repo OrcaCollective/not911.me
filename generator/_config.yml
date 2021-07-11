@@ -1,0 +1,21 @@
+title: Not 911
+email: techblocsea@protonmail.com
+description: Alternatives to calling 911.
+baseurl: ""
+url: "https://not911.me"
+twitter_username: TechBlocSEA
+
+plugins:
+  - jekyll-feed
+
+collections:
+  cities:
+    title: Cities
+    output: true
+    permalink: "/:slug"
+  resources:
+    title: Resources
+    output: false
+  resource_types:
+    title: Resource Types
+    output: false
