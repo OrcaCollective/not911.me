@@ -17,6 +17,7 @@
     </p>
 
     <form name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="city_slug" value="{{ page.slug }}" />
         <p>
             <label>Your Email: <input type="email" name="email" /></label>
         </p>
