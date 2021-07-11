@@ -44,7 +44,7 @@ h1 {
     justify-content: center;
 }
 
-.buttons a {
+button, .buttons a {
     background: cyan;
     font-weight: 600;
     color: black;
@@ -56,15 +56,15 @@ h1 {
     height: 2em;
 }
 
-.buttons a:hover {
+button:hover, .buttons a:hover {
     background: lightblue;
 }
 
-.buttons a:active {
+button:active, .buttons a:active {
     box-shadow: none;
 }
 
-.resource {
+.resource, form {
     border: 1px solid black;
     border-radius: 3px;
     padding-left: 1em;
@@ -80,4 +80,18 @@ section > header {
 .categories {
     margin-top: 1em;
     margin-bottom: 2em;
+}
+
+form input {
+    width: 100%;
+}
+
+form textarea {
+    width: 100%;
+}
+
+button {
+    font-size: 1em;
+    outline: none;
+    border: none;
 }
