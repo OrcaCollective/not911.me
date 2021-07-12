@@ -108,3 +108,8 @@ details > p:last-of-type {
 summary {
     cursor: pointer;
 }
+
+h3 {
+    padding-top: 40px;
+    margin-top: -20px;
+}
