@@ -6,11 +6,22 @@ layout: default
 {% endcapture %}
 {% assign resources_by_type = site.resources | where_exp:"item", expression | group_by:"category" %}
 
+{% assign city_resource_type_slugs = resources_by_type | map:"name" | join:", " %}
+
+{% assign resource_types = '' | split:'' %}
+{% for resource_type in site.resource_types %}
+    {% if city_resource_type_slugs contains resource_type.slug %}
+        {% assign resource_types = resource_types | push: resource_type %}
+    {% endif %}
+{% endfor %}
+
+{% assign resource_types = resource_types | sort:"order" %}
+
 {% include resource_types.html %}
 
 {% include why.html %}
 
-{% for resources in resources_by_type %}
+{% for resource_type in resource_types %}
     {% include resource_type.html %}
 {% endfor %}
 

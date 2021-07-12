@@ -10,9 +10,8 @@
     </p>
 
     <div class="buttons categories">
-        {% for resource_type in resources_by_type %}
-            {% assign the_resource_type = site.resource_types | find:"slug", resource_type.name %}
-            <a href="#{{ the_resource_type.slug }}">{{ the_resource_type.title }}</a>
+        {% for resource_type in resource_types %}
+            <a href="#{{ resource_type.slug }}">{{ resource_type.title }}</a>
         {% endfor %}
     </div>
 </section>
