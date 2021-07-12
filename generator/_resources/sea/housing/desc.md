@@ -1,6 +1,4 @@
 ---
-city_slugs:
-  - sea
 title: Downtown Emergency Services Center
 href: https://www.desc.org/about/
 category: housing

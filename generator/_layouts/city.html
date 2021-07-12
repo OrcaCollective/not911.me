@@ -1,0 +1,17 @@
+---
+layout: default
+---
+{% capture expression %}
+    item.path contains 'shared' or item.path contains '{{ page.slug }}'
+{% endcapture %}
+{% assign resources_by_type = site.resources | where_exp:"item", expression | group_by:"category" %}
+
+{% include resource_types.html %}
+
+{% include why.html %}
+
+{% for resources in resources_by_type %}
+    {% include resource_type.html %}
+{% endfor %}
+
+{% include about.html %}

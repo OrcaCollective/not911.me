@@ -1,5 +1,4 @@
 ---
-layout: default
 title: Seattle, WA
 slug: sea
 nonemergency_phone:
@@ -16,7 +15,3 @@ prior_art: |
     The <em><a href="/12things-screen.pdf" target="_blank">12 Things To Do Instead of Calling the Cops</a></em> zine was also a great inspiration for some of the text on this page. Please check that zine out for more ideas of how to avoid bring the cops into your communities!
   </p>
 ---
-
-{% assign resources_by_type = site.resources | where_exp:"item", "item.city_slugs contains 'sea'" | group_by:"category" %}
-
-{% include city.html %}

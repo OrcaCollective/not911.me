@@ -1,6 +1,4 @@
 ---
-city_slugs:
-  - sea
 title: Trans Lifeline
 href: https://translifeline.org
 category: lgbtqia+

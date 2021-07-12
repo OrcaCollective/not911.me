@@ -19,3 +19,10 @@ collections:
   resource_types:
     title: Resource Types
     output: false
+
+defaults:
+- scope:
+    path: ''
+    type: cities
+  values:
+    layout: city
