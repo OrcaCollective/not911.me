@@ -1,0 +1,12 @@
+{% assign resource_type = site.resource_types | where:"slug", resources.name | first %}
+
+<section>
+    <header>
+        <h3 id="{{ resource_type.slug }}">{{ resource_type.title }}</h3>
+        <div class="buttons"><a href="#alternative-resources">Back to the top</a></div>
+    </header>
+
+    {% for resource in resources.items %}
+        {% include resource.html %}
+    {% endfor %}
+</section>

@@ -1,0 +1,18 @@
+<section>
+    <h2 id="alternative-resources">Alternative resources</h2>
+
+    <p>
+        Below are various alternatives to calling 911 in the {{ page.title }} area.
+    </p>
+
+    <p>
+        <strong>Note: All resources listed are available 24 hours a day unless otherwise noted.</strong>
+    </p>
+
+    <div class="buttons categories">
+        {% for resource_type in resources_by_type %}
+            {% assign the_resource_type = site.resource_types | find:"slug", resource_type.name %}
+            <a href="#{{ the_resource_type.slug }}">{{ the_resource_type.title }}</a>
+        {% endfor %}
+    </div>
+</section>
