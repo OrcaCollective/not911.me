@@ -1,6 +1,6 @@
 ---
 title: Seattle, WA
-slug: sea
+slug: seattle
 nonemergency_phone:
   link: 2066255011
   display: (206) 625-5011
