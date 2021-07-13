@@ -1,5 +1,5 @@
 ---
 title: LGBTQIA+
 slug: lgbtqia+
-order: 1
+order: 2
 ---

@@ -4,10 +4,15 @@
     {{ resource.content | markdownify }}
 
     <p class="phones">
-        <a href="tel:{{ resource.phones.primary.link }}"><img src="/phone.svg" alt="Call" /></a>
-        <a href="tel:{{ resource.phones.primary.link }}">{{ resource.phones.primary.display }}</a>
+        {% if resource.phones.primary %}
+            <a href="tel:{{ resource.phones.primary.link }}"><img src="/phone.svg" alt="Call" /></a>
+            <a href="tel:{{ resource.phones.primary.link }}">{{ resource.phones.primary.display }}</a>
+        {% endif %}
         {% for phone in resource.phones.secondary %}
             <a href="tel:{{ phone.link }}">{{ phone.display }}</a>
         {% endfor %}
+        {% if resource.email %}
+            <a href="mailto:{{ resource.email }}">{{ resource.email }}</a>
+        {% endif %}
     </p>
 </div>
