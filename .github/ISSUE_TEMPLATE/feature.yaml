@@ -1,0 +1,19 @@
+name: Feature request
+description: Submit a feature request
+title: "[enhancement]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What
+      description: Please describe the feature
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: Please explain why this feature is needed
+    validations:
+      required: true

@@ -1,0 +1,48 @@
+name: Submit a new resource
+description: Submit a new resource
+title: "[resource]: "
+labels:
+  - enhancement
+  - good first issue
+body:
+  - type: input
+    id: city_name
+    attributes:
+      label: City name
+      placeholder: Seattle, WA
+    validations:
+      required: true
+  - type: input
+    id: resource_name
+    attributes:
+      label: Resource name
+      placeholder: Safe Place
+    validations:
+      required: true
+  - type: textarea
+    id: phones
+    attributes:
+      label: Phone numbers
+      description: Please list the phones for this resource.
+      value: |
+        - Primary phone:
+        - Secondary phones (if any):
+          - 
+          - 
+  - type: input
+    id: email
+    attributes:
+      label: Resource email
+      placeholder: organization@example.com
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please describe the correction you would like us to make to the resource
+    validations:
+      required: true
+  - type: checkbox
+    id: vetted
+    attributes:
+      label: Vetted
+      description: Have you vetted this resource and determined whether they work with the police?
