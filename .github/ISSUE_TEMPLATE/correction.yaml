@@ -1,0 +1,26 @@
+name: Correction to a resource
+description: Submit a correction for one of the listed resources
+title: "[correction]: "
+labels: [bug, triage]
+body:
+  - type: input
+    id: city_name
+    attributes:
+      label: City name
+      placeholder: Seattle, WA
+    validations:
+      required: true
+  - type: input
+    id: resource_name
+    attributes:
+      label: Resource name
+      placeholder: Safe Place
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please describe the correction you would like us to make to the resource
+    validations:
+      required: true
