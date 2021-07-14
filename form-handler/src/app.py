@@ -1,3 +1,4 @@
+import logging
 import os
 
 import dotenv
@@ -9,6 +10,8 @@ dotenv.load_dotenv()
 
 import utils
 
+
+logger = logging.getLogger(__name__)
 
 REDIS_URL = os.environ.get("REDIS_URL")
 
@@ -32,7 +35,10 @@ class FormResource:
         user_ip = req.headers.get("X-Forwarded-For", req.remote_addr)
         body: utils.RequestBody = req.get_media()
         utils.validate_body(body)
-        utils.send_message(user_ip, **body)
+        try:
+            utils.send_message(user_ip, **body)
+        except Exception:
+            logger.exception("An error occured while sending a message")
         resp.status = falcon.HTTP_FOUND
         resp.headers["Location"] = req.host
 
