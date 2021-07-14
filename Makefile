@@ -1,3 +1,4 @@
+.PHONY: .env
 .env:
 	cp form-handler/.env.example form-handler/.env
 

@@ -16,6 +16,6 @@ docker compose up
 2. Activate the virtual environment: `source venv/bin/activate`
 3. Install dependencies: `pip install -r form-handler/requirements-dev.txt`
 4. Install the pre-commit hook: `pre-commit install`
-5. Copy the `form-handler/.env.example` to `form-handler/.env` and fill in the properties.
-6. Run the app: `hypercorn --bind=0.0.0.0:5000 --reload form-handler/src/app:app`
+5. Run `make .env` and fill in the properties in the `form-handler/.env` file.
+6. Run the app: `make run`
 7. Make changes and contribute 🙌
