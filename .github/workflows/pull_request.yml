@@ -11,10 +11,8 @@ jobs:
       - uses: actions/setup-python@v1
         with:
           python-version: 3.9
-      - name: Switch to form-handler directory
-        run: cd form-handler
       - name: Install Dependencies
-        run: pip install -r requirements-dev.txt
+        run: pip install -r form-handler/requirements-dev.txt
       - name: Run pre-commit checks
         run: pre-commit run --all-files
 
