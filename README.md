@@ -69,7 +69,7 @@ The final layer is the "resource" which represents an individual alternative to 
 
 The resource is the most complicated data type and can encompass many edge cases.
 
-Resources may belong to a particular city or they may be shared. Shared resources simply go in the `shared` folder in the `_resources` directory. Resources for a particular city go into a folder named after the slug for that city. So for Seattle resources, they go into a `seattle` folder. For Austin, TX resources, they would go into an `austin` folder.
+Resources may belong to a particular city or they may be shared. Shared resources simply go in the `shared` folder in the `_resources` directory. A shared resource will be rendered for _every_ city so make sure it is truly a universal resource (like Trans Lifeline for example). Resources for a particular city go into a folder named after the slug for that city. So for Seattle resources, they go into a `seattle` folder. For Austin, TX resources, they would go into an `austin` folder.
 
 A simple example of a resource is Seattle Alcoholics Anonymous:
 
