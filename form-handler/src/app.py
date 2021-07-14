@@ -4,10 +4,10 @@ import dotenv
 import falcon
 import falcon.asgi
 
-import utils
-
 
 dotenv.load_dotenv()
+
+import utils
 
 
 class RequestBody(TypedDict, total=False):
