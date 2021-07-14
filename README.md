@@ -91,16 +91,16 @@ Notice again that the resource is simply a markdown file with some frontmatter d
 
 Resources can have the following fields:
 
-- **title** (required): The title of the resource
-- **href** (required): A link to the resource's website, social media, or related
+- **title** (required): The title of the resource.
+- **href** (required): A link to the resource's website, social media, or related.
 - **category** (required): The resource type slug for this resource.
 - **email** (optional): Optional email address for the resource to be displayed below the phones.
 - **phones** (optional): An object representing the phones. This will almost always exist given the nature of the website but may not be present for certain resources that only have email addresses.
-    - **phones.primary** (required): An object representing the primary phone
-        - **phones.primary.display** (required): How to display the primary phone
+    - **phones.primary** (required): An object representing the primary phone.
+        - **phones.primary.display** (required): How to display the primary phone.
         - **phones.primary.link** (required): The value to use when linking the phone. Should be a valid `tel:` link value.
-    - **phones.secondary** (optional): An optional list of phone objects
-        - **phones.secondary[i].display** (required): How to display the phone number
+    - **phones.secondary** (optional): An optional list of phone objects.
+        - **phones.secondary[i].display** (required): How to display the phone number.
         - **phone.secondary[i].link** (required): How to link the phone. Should be a valid `tel:` link value.
 
 There are a lot of examples of resources in the resources folder so just take a look around to get ideas for how these can be structured.
