@@ -1,0 +1,4 @@
+falcon==3.0.1
+hypercorn==0.11.2
+python-dotenv==0.17.1
+httpx==0.18.2

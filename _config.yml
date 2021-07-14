@@ -26,3 +26,6 @@ defaults:
     type: cities
   values:
     layout: city
+
+exclude:
+- form-handler
