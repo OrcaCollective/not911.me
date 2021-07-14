@@ -26,3 +26,10 @@ defaults:
     type: cities
   values:
     layout: city
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - netlify.toml
+  - README.md

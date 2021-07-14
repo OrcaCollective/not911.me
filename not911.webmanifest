@@ -1,0 +1,17 @@
+{
+    "name": "Not 911",
+    "short_name": "not911",
+    "start_url": "./",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#ff0080",
+    "description": "Alternatives to calling 911.",
+    "icons": [
+        {
+            "src": "/apple-touch-icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ]
+}

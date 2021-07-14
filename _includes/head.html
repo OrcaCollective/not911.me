@@ -1,11 +1,16 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Not 911 - {{ page.title }}</title>
-<link id="favicon" rel="icon" href="/favico.ico" type="image/x-icon">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link id="favicon" rel="icon" href="/favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="List of alternatives to calling 911 in Seattle">
 <meta name="author" content="Tech Bloc SEA">
+<meta name="theme-color" content="#ff0080">
 
 <link rel="stylesheet" href="/style.css">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="128x128">
 <link rel="icon" sizes="192x192" href="/apple-touch-icon.png">
+<link rel="icon" type="image/svg" sizes="144x144" href="/icon.svg">
+<link rel="manifest" href="/not911.webmanifest">
+
+{% include register-service-worker.js.html %}
