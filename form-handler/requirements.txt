@@ -1,4 +1,6 @@
 falcon==3.0.1
-httpx==0.18.2
-hypercorn==0.11.2
+falcon-limiter==0.1.2
+gunicorn==20.1.0
 python-dotenv==0.17.1
+redis==3.5.3
+requests==2.26.0

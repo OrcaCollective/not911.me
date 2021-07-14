@@ -1,9 +1,16 @@
 version: '3'
 
 services:
+  redis:
+    image: redis
+    expose:
+      - 6379
+
   form-handler:
     build: .
     ports:
       - 5001:5000
     env_file:
       - .env
+    depends_on:
+      - redis

@@ -2,9 +2,10 @@ import logging
 import os
 import smtplib
 from email.message import EmailMessage
-from typing import Awaitable, Callable
+from typing import TypedDict
 
-import httpx
+import falcon
+import requests
 
 
 logger = logging.getLogger(__name__)
@@ -27,39 +28,47 @@ AKISMET_DEFAULT_PARAMS = {
 }
 
 
-def build_callback(
-    user_ip: str, email: str, message: str, **kwargs
-) -> Callable[[], Awaitable[None]]:
-    async def callback():
-        is_spam = await check_akismet(user_ip, email, message)
+class RequestBody(TypedDict, total=False):
+    """These are just the required params. Other params are fine too, they'll just get passed as kwargs."""
 
-        if is_spam:
-            return
-
-        send_message(email, message, **kwargs)
-
-    return callback
+    form_name: str
+    email: str
+    message: str
 
 
-async def check_akismet(user_ip: str, email: str, message: str) -> bool:
-    async with httpx.AsyncClient() as client:
-        response = await client.post(
-            AKISMET_COMMENT_CHECK_PATH,
-            data={
-                "user_ip": user_ip,
-                "comment_author_email": email,
-                "comment_content": message,
-                **AKISMET_DEFAULT_PARAMS,
-            },
-        )
+def validate_body(body: RequestBody) -> None:
+    for field in ["form_name", "email", "message"]:
+        if field not in body:
+            raise falcon.HTTPBadRequest()
 
-        return response.text == "true"
+
+def send_message(user_ip: str, email: str, message: str, **kwargs):
+    is_spam = _check_akismet(user_ip, email, message)
+
+    if is_spam:
+        return
+
+    _send_message(email, message, **kwargs)
+
+
+def _check_akismet(user_ip: str, email: str, message: str) -> bool:
+    response = requests.post(
+        AKISMET_COMMENT_CHECK_PATH,
+        data={
+            "user_ip": user_ip,
+            "comment_author_email": email,
+            "comment_content": message,
+            **AKISMET_DEFAULT_PARAMS,
+        },
+    )
+
+    return response.text == "true"
 
 
 SMTP_PARAMS = {"host": SMTP_HOST, "port": SMTP_PORT}
 
 
-def send_message(email: str, message: str, form_name: str, **kwargs) -> None:
+def _send_message(email: str, message: str, form_name: str, **kwargs) -> None:
     with smtplib.SMTP(host=SMTP_HOST, port=int(SMTP_PORT)) as smtp:
         smtp.login(user=SMTP_USERNAME, password=SMTP_PASSWORD)
         msg = EmailMessage()
