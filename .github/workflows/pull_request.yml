@@ -1,0 +1,32 @@
+name: Lint and Test
+
+on: pull_request
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+      - name: Switch to form-handler directory
+        run: cd form-handler
+      - name: Install Dependencies
+        run: pip install -r requirements-dev.txt
+      - name: Run pre-commit checks
+        run: pre-commit run --all-files
+
+  build-site:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+      - name: Install Dependencies
+        run: bundle install
+      - name: Build the site
+        run: bundle exec jekyll build
