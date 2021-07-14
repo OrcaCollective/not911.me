@@ -4,7 +4,7 @@ Alternatives to dialing 911.
 
 ## To submit a correction or add a new resource
 
-Either open a pull request with the correction/new resource or [open an issue](https://github.com/Automattic/wp-calypso/issues/new/choose).
+Either open a pull request with the correction/new resource or [open an issue](https://github.com/SeattleDSA/not911.me/issues/new/choose).
 
 If neither of those options work for you, you can also securely email us at <techblocsea@protonmail.com>.
 
