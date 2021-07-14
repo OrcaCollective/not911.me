@@ -47,7 +47,7 @@ Note that the content of a city markdown file is completely ignored, so don't bo
 
 ### Resource Types
 
-The next layer is the "resource type" layer. These represent the various categories of resources that are displayed on each city's page. They have no replationships, and are yet again simply a markdown file with YAML frontmatter. This is a minimal example:
+The next layer is the "resource type" layer. These represent the various categories of resources that are displayed on each city's page. They are yet again simply a markdown file with YAML frontmatter. This is a minimal example:
 
 ```markdown
 ---
