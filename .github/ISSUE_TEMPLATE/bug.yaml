@@ -1,0 +1,29 @@
+name: Bug report
+description: File a bug report
+title: "[bug]: "
+labels: [bug, triage]
+body:
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      placeholder: Firefox
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please describe the bug and the steps necessary to reproduce
+    validations:
+      required: true
+    value: |
+      ## Steps to reproduce:
+      1.
+      2.
+      3.
+      ...
+
+      ## Expected behavior:
+
+      ## Actual behavior:
