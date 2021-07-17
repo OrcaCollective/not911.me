@@ -5,9 +5,6 @@ baseurl: ""
 url: "https://not911.me"
 twitter_username: TechBlocSEA
 
-plugins:
-  - jekyll-feed
-
 collections:
   cities:
     title: Cities
