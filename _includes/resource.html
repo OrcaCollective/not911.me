@@ -3,6 +3,12 @@
 
     {{ resource.content | markdownify }}
 
+    {% if resource.mandatory_reporter %}
+        <strong>
+            Representatives of this resource are <a href="#mandatory-reporters"><em>mandatory reporters</em></a>.
+        </strong>
+    {% endif %}
+
     <p class="phones">
         {% if resource.phones.primary %}
             <a href="tel:{{ resource.phones.primary.link }}"><img src="/phone.svg" alt="Call" /></a>
