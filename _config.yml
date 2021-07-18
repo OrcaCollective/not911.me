@@ -4,6 +4,7 @@ description: Alternatives to calling 911.
 baseurl: ""
 url: "https://not911.me"
 twitter_username: TechBlocSEA
+version: 1.0.0
 
 collections:
   cities:
