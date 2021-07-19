@@ -28,7 +28,23 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-    event.respondWith(caches.match(event.request).then(r => r || fetch(event.request)));
+    event.respondWith(
+        caches.match(event.request).then(r => {
+            if (r) {
+                return r;
+            }
+            return fetch(event.request.clone())
+                .then(response => {
+                    if (response.status < 400) {
+                        caches.put(event.request, response.clone())
+                    } else {
+                        console.log('404ing');
+                        const req404 = new Request("/404.html");
+                        return caches.match(req404);
+                    }
+                })
+        })
+    )
 });
 
 self.addEventListener('activate', (event) => {
