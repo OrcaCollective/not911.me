@@ -11,7 +11,7 @@
 
     <p class="phones">
         {% if resource.phones.primary %}
-            <a href="tel:{{ resource.phones.primary.link }}"><img src="/phone.svg" alt="Call" /></a>
+            <a href="tel:{{ resource.phones.primary.link }}"><span class="phone-icon" role="img" aria-label="Phone"></span></a>
             <a href="tel:{{ resource.phones.primary.link }}">{{ resource.phones.primary.display }}</a>
         {% endif %}
         {% for phone in resource.phones.secondary %}

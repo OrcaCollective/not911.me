@@ -4,6 +4,7 @@
   
 body {
     font-family: helvetica, arial, sans-serif;
+    transition: background-color ease-in 250ms;
 }
 
 h1 a {
@@ -36,6 +37,13 @@ h1 a {
 
 .phones > a {
     margin-bottom: 1em;
+}
+
+.phone-icon {
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    background-image: url('icons/phone-dark.svg');
 }
 
 .buttons {
@@ -116,4 +124,80 @@ summary {
 h3 {
     padding-top: 40px;
     margin-top: -20px;
+}
+
+.theme-toggle {
+    cursor: pointer;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    right: 1.5rem;
+    bottom: 1rem;
+    border: 2px solid black;
+    background-color: white;
+    box-shadow: 2px 2px 0 0 black;
+    border-radius: 100%;
+    height: 34px;
+    width: 38px;
+    padding: 0;
+}
+
+.theme-toggle-icon {
+    height: 26px;
+    width: 26px;
+    display: flex;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.theme-toggle-icon {
+    background-image: url('/icons/light-theme.svg');
+}
+
+
+/** theme specific css **/
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000103;
+        color: white;
+    }
+
+    a {
+        color: #ff0080;
+    }
+
+    .resource {
+        border-color: white;
+    }
+
+    .phone-icon {
+        background-image: url('icons/phone-light.svg');
+    }
+}
+
+body.light {
+    background-color: white;
+    color: black;
+}
+
+.light .phone-icon {
+    background-image: url('icons/phone-dark.svg');
+}
+
+.light .resource {
+    border-color: black;
+}
+
+.dark .theme-toggle {
+    box-shadow: 2px 2px 0 0 white;
+}
+
+.theme-toggle:focus {
+    background-color: white;
+}
+
+.light .theme-toggle-icon {
+    background-image: url('/icons/dark-theme.svg');
 }
