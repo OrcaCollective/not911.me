@@ -58,7 +58,8 @@ a {
     height: 24px;
     width: 24px;
     display: inline-block;
-    background-image: url('icons/phone-dark.svg');
+    color: $font-color;
+    fill: $background-color;
 }
 
 .buttons {
@@ -192,7 +193,8 @@ h3 {
         }
 
         .phone-icon {
-            background-image: url('icons/phone-light.svg');
+            color: $font-color;
+            fill: $background-color;
         }
 
         .theme-toggle {
