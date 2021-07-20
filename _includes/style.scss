@@ -1,17 +1,32 @@
+$background-color: white;
+$font-color: black;
+$primary-color: cyan;
+$secondary-color: #ff0080;
+
 * {
     box-sizing: border-box;
 }
   
-body {
+:root {
     font-family: helvetica, arial, sans-serif;
     transition: background-color ease-in 250ms;
+    background-color: $background-color;
+    color: $font-color;
+}
+
+body {
+    margin: 0;
 }
 
 h1 a {
     font-weight: bold;
-    color: #ff0080;
+    color: $secondary-color;
 	text-decoration: line-through;
     text-align: center;
+}
+
+a {
+    color: #ff0080;
 }
 
 .container {
@@ -53,7 +68,7 @@ h1 a {
 }
 
 button, .buttons a {
-    background: cyan;
+    background: $primary-color;
     font-weight: 600;
     color: black;
     padding: 0.5em;
@@ -73,7 +88,7 @@ button:active, .buttons a:active {
 }
 
 .resource, form, details {
-    border: 1px solid black;
+    border: 1px solid $font-color;
     border-radius: 3px;
     padding-left: 1em;
     padding-right: 1em;
@@ -137,11 +152,16 @@ h3 {
     bottom: 1rem;
     border: 2px solid black;
     background-color: white;
-    box-shadow: 2px 2px 0 0 black;
+    box-shadow: 2px 2px 0 0 $font-color;
+    transition: box-shadow ease-in 250ms;
     border-radius: 100%;
     height: 34px;
     width: 38px;
     padding: 0;
+}
+
+.theme-toggle:focus {
+    background-color: white;
 }
 
 .theme-toggle-icon {
@@ -156,48 +176,27 @@ h3 {
     background-image: url('/icons/light-theme.svg');
 }
 
-
 /** theme specific css **/
 @media (prefers-color-scheme: dark) {
-    body {
-        background-color: #000103;
-        color: white;
+    :root:not(.light) {
+        $background-color: black;
+        $font-color: white;
+
+        body {
+            background-color: $background-color;
+            color: $font-color;
+        }
+
+        .resource {
+            border-color: $font-color;
+        }
+
+        .phone-icon {
+            background-image: url('icons/phone-light.svg');
+        }
+
+        .theme-toggle {
+            box-shadow: 2px 2px 0 0 white;
+        }
     }
-
-    a {
-        color: #ff0080;
-    }
-
-    .resource {
-        border-color: white;
-    }
-
-    .phone-icon {
-        background-image: url('icons/phone-light.svg');
-    }
-}
-
-body.light {
-    background-color: white;
-    color: black;
-}
-
-.light .phone-icon {
-    background-image: url('icons/phone-dark.svg');
-}
-
-.light .resource {
-    border-color: black;
-}
-
-.dark .theme-toggle {
-    box-shadow: 2px 2px 0 0 white;
-}
-
-.theme-toggle:focus {
-    background-color: white;
-}
-
-.light .theme-toggle-icon {
-    background-image: url('/icons/dark-theme.svg');
 }

@@ -4,20 +4,21 @@
     const themeToggleButton = document.querySelector('.theme-toggle');
     const darkSchemePreference = prefersDarkScheme ? 'dark' : 'light';
     const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : darkSchemePreference;
+    const rootElement = document.querySelector(':root');
 
     if (currentTheme === 'dark') {
-        document.body.classList.toggle('dark');
+        rootElement.classList.toggle('dark');
         themeToggleButton.setAttribute('aria-pressed', true);
     }  else if (currentTheme == 'light') {
-        document.body.classList.toggle('light');
+        rootElement.classList.toggle('light');
         themeToggleButton.setAttribute('aria-pressed', false);
     }
 
     themeToggleButton.addEventListener('click', handleThemeToggle);
 
     function handleThemeToggle(e) {
-        document.body.classList.toggle('light');
-        document.body.classList.toggle('dark');
+        rootElement.classList.toggle('light');
+        rootElement.classList.toggle('dark');
 
         if (e.key === " " || e.key === "Enter" || e.key === "Spacebar") { // "Spacebar" for IE11 support
             // Prevent the default action to stop scrolling when space is pressed
@@ -25,8 +26,8 @@
             toggleButton(e.target);
           }
 
-        const theme = document.body.classList.contains('light') ? 'light' : 'dark';
-        const ariaPressed = document.body.classList.contains('light') ? false : true;
+        const theme = rootElement.classList.contains('light') ? 'light' : 'dark';
+        const ariaPressed = rootElement.classList.contains('light') ? false : true;
         
         themeToggleButton.setAttribute('aria-pressed', ariaPressed);
         localStorage.setItem('theme', theme);
