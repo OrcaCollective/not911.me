@@ -6,9 +6,11 @@ const cityNames = [
     {%- endfor -%}
 ];
 
+const version = 'v{{ site.version }}';
+
 self.addEventListener("install", (event) => {
     event.waitUntil(
-        caches.open('v{{ site.version }}').then((cache) => {
+        caches.open(version).then((cache) => {
             return cache.addAll([
                 "./",
                 "index.html",
@@ -36,9 +38,9 @@ self.addEventListener("fetch", (event) => {
             return fetch(event.request.clone())
                 .then(response => {
                     if (response.status < 400) {
-                        caches.put(event.request, response.clone())
+                        caches.open(version).then(cache => cache.put(event.request, response));
+                        return response.clone();
                     } else {
-                        console.log('404ing');
                         const req404 = new Request("/404.html");
                         return caches.match(req404);
                     }
@@ -52,7 +54,7 @@ self.addEventListener('activate', (event) => {
       caches.keys().then((cacheNames) => {
         return Promise.all(
             cacheNames.filter((cacheName) => {
-                return cacheName !== 'v{{ site.version }}';
+                return cacheName !== version;
             }).map((cacheName) => {
                 return caches.delete(cacheName);
             })
