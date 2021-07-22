@@ -9,6 +9,8 @@ const cityNames = [
 const version = 'v{{ site.version }}';
 
 self.addEventListener("install", (event) => {
+    self.skipWaiting();
+
     event.waitUntil(
         caches.open(version).then((cache) => {
             return cache.addAll([
