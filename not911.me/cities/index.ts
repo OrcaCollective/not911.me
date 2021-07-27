@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import { parse } from 'yaml';
 
-import type { City } from '../types';
+import type { CityDescription } from '../types';
 
 const cityFiles = glob.sync(path.join(process.cwd(), 'cities/*.yaml'));
-export const cities: City[] = cityFiles.map(file => parse(String(fs.readFileSync(file))));
+export const cities: CityDescription[] = cityFiles.map(file => parse(String(fs.readFileSync(file))));

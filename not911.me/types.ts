@@ -30,7 +30,7 @@ export interface CategoryDescription {
     slug: string;
 }
 
-export interface City {
+export interface CityDescription {
     name: string;
     slug: string;
     nonemergencyPhone: Phone;

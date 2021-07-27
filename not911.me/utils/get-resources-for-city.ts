@@ -1,6 +1,7 @@
 import glob from 'glob';
 import path from 'path';
 import * as vfile from 'to-vfile';
+import type { Literal, Parent } from 'unist';
 import {unified} from 'unified';
 import parse from 'remark-parse';
 import frontmatter from 'remark-frontmatter';
@@ -16,8 +17,8 @@ import { categories } from '../categories';
 const compiler = unified().use(parse).use(remark2rehype, { allowDangerousHtml: true }).use(frontmatter, ['yaml']).use(raw).use(format).use(stringify);
 
 const resourceFiles = glob.sync(path.join(process.cwd(), 'resources/**/*.md'));
-const resourcesPromise = Promise.all<ResourceDescription>(resourceFiles.map(async (resourceFile) => {
-    const parsed = compiler.parse(await vfile.read(resourceFile));
+const resources: ResourceDescription[] = resourceFiles.map((resourceFile) => {
+    const parsed = compiler.parse(vfile.readSync(resourceFile)) as Parent<Literal<string>>;
 
     // @ts-ignore
     const hasYaml = parsed.children[0].type === 'yaml';
@@ -28,7 +29,7 @@ const resourcesPromise = Promise.all<ResourceDescription>(resourceFiles.map(asyn
         parsed.children = parsed.children.slice(1);
     }
 
-    const run = await compiler.run(parsed);
+    const run = compiler.runSync(parsed);
 
     const stringified = compiler.stringify(run);
     return {
@@ -36,13 +37,11 @@ const resourcesPromise = Promise.all<ResourceDescription>(resourceFiles.map(asyn
         frontmatter: parsedYaml,
         content: stringified,
     } as ResourceDescription;
-}));
+});
 
 const categoriesBySlug = categories.reduce((acc, c) => ({ ...acc, [c.slug]: c}), {} as Record<string, CategoryDescription>)
 
-export const getResourcesForCityByCategory = async (citySlug: string): Promise<[CategoryDescription[], Record<string, ResourceDescription[]>]> => {
-    const resources = await resourcesPromise;
-
+export const getResourcesForCityByCategory = (citySlug: string): [CategoryDescription[], Record<string, ResourceDescription[]>] => {
     const byCategory: Record<string, ResourceDescription[]> = {};
     const categoriesForCity: Record<string, CategoryDescription> = {};
     for (const resource of resources) {
