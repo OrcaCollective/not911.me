@@ -1,0 +1,42 @@
+{
+  "name": "not911.me",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mdx-js/loader": "^1.6.22",
+    "@mdx-js/mdx": "^1.6.22",
+    "@next/mdx": "^11.0.1",
+    "glob": "^7.1.7",
+    "next": "11.0.1",
+    "next-transpile-modules": "^8.0.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "rehype-format": "^3.1.0",
+    "rehype-raw": "^5.1.0",
+    "rehype-stringify": "^8.0.0",
+    "remark-extract-frontmatter": "^3.1.0",
+    "remark-frontmatter": "^3.0.0",
+    "remark-mdx": "^1.6.22",
+    "remark-parse": "^9.0.0",
+    "remark-rehype": "^8.1.0",
+    "remark-stringify": "^9.0.1",
+    "to-vfile": "^7.2.1",
+    "unified": "^10.0.1",
+    "unist-util-remove": "^3.0.0",
+    "unist-util-visit": "^3.1.0",
+    "yaml": "^1.10.2"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.4",
+    "@types/react": "17.0.15",
+    "eslint": "7.31.0",
+    "eslint-config-next": "11.0.1",
+    "typescript": "4.3.5"
+  }
+}
