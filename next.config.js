@@ -2,4 +2,5 @@ const withTM = require('next-transpile-modules')(['unified', 'bail', 'is-plain-o
 
 module.exports = withTM({
     reactStrictMode: true,
+    target: 'serverless',
 });
