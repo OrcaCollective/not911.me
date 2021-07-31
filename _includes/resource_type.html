@@ -2,15 +2,15 @@
     item.path contains 'shared' or item.path contains '{{ page.slug }}'
 {% endcapture %}
 
-{% assign resources = resources_by_type | where:"name", resource_type.slug | map:"items" | first %}
-
 <section>
     <header>
         <h3 id="{{ resource_type.slug }}">{{ resource_type.title }}</h3>
         <div class="buttons"><a href="#alternative-resources">Back to the top</a></div>
     </header>
 
-    {% for resource in resources %}
-        {% include resource.html %}
+    {% for resource in city_resources %}
+        {% if resource.categories contains resource_type.slug or resource.category == resource_type.slug %}
+            {% include resource.html %}
+        {% endif %}
     {% endfor %}
 </section>

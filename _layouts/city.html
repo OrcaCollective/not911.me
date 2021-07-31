@@ -4,9 +4,19 @@ layout: default
 {% capture expression %}
     item.path contains 'shared' or item.path contains '{{ page.slug }}'
 {% endcapture %}
-{% assign resources_by_type = site.resources | where_exp:"item", expression | group_by:"category" %}
+{% assign city_resources = site.resources | where_exp:"item", expression %}
 
-{% assign city_resource_type_slugs = resources_by_type | map:"name" | join:", " %}
+{% assign city_resource_type_slugs = '' | split:'' %}
+{% for resource in city_resources %}
+    {% for category in resource.categories %}
+        {% assign city_resource_type_slugs = city_resource_type_slugs | push: category %}
+    {% endfor %}
+    {% if resource.category %}
+        {% assign city_resource_type_slugs = city_resource_type_slugs | push: resource.category %}
+    {% endif %}
+{% endfor %}
+
+{% assign city_resource_type_slugs = city_resource_type_slugs | uniq | join: "," %}
 
 {% assign resource_types = '' | split:'' %}
 {% for resource_type in site.resource_types %}
