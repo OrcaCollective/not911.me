@@ -1,0 +1,74 @@
+{%- assign city = site.cities | where:"slug", page.slug | first -%}
+{%- capture expression -%}
+    item.path contains 'shared' or item.path contains '{{ page.slug }}'
+{%- endcapture -%}
+{%- assign city_resources = site.resources | where_exp:"item", expression -%}
+
+{%- assign city_resource_type_slugs = '' | split:'' -%}
+{%- for resource in city_resources -%}
+    {%- for category in resource.categories -%}
+        {%- assign city_resource_type_slugs = city_resource_type_slugs | push: category -%}
+    {%- endfor -%}
+    {%- if resource.category -%}
+        {%- assign city_resource_type_slugs = city_resource_type_slugs | push: resource.category -%}
+    {%- endif -%}
+{%- endfor -%}
+
+{%- assign city_resource_type_slugs = city_resource_type_slugs | uniq | join: "," -%}
+
+{%- assign resource_types = '' | split:'' -%}
+{%- for resource_type in site.resource_types -%}
+    {%- if city_resource_type_slugs contains resource_type.slug -%}
+        {%- assign resource_types = resource_types | push: resource_type -%}
+    {%- endif -%}
+{%- endfor -%}
+
+{%- assign resource_types = resource_types | sort:"order" -%}
+{
+    "slug": "{{ city.slug }}",
+    "title": "{{ city.title }}",
+    "nonemergency_phone": {
+        "link": "{{ city.nonemergency_phone.link }}",
+        "display": "{{ city.nonemergency_phone.display }}"
+    },
+    "resource_types": [
+        {%- for resource_type in resource_types -%}
+            {
+                "title": "{{ resource_type.title }}",
+                "slug": "{{ resource_type.slug }}",
+                "order": "{{ resource_type.order }}",
+                "resources": [
+                    {%- assign resources = '' | split:'' -%}
+                    {%- for resource in city_resources -%}
+                        {%- if resource.categories contains resource_type.slug or resource.category == resource_type.slug -%}
+                            {%- assign resources = resources | push: resource -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                    {%- for resource in resources -%}
+                        {
+                            "title": "{{ resource.title }}",
+                            "href": "{{ resource.href }}",
+                            {%- if resource.email -%}"email": "{{ resource.email }}",{%- endif -%}
+                            {%- if resource.phones -%}"phones": {
+                                "primary": {
+                                    "display": "{{ resource.phones.primary.display }}",
+                                    "link": "{{ resource.phones.primary.link }}"
+                                }{%- if resource.phones.secondary -%},
+                                    "secondary": [
+                                        {%- for phone in resource.phones.secondary -%}
+                                        {
+                                            "display": "{{ phone.display }}",
+                                            "link": "{{ phone.link }}"
+                                        }{%- if forloop.last -%}{%- else -%},{%- endif -%}
+                                        {%- endfor -%}
+                                    ]
+                                {%- endif -%}
+                            },{%- endif -%}
+                            "description": "{{ resource.content | markdownify | strip_newlines | replace: '"', '\"' }}"
+                        }{%- if forloop.last -%}{%- else -%},{%- endif -%}
+                    {%- endfor -%}
+                ]
+            }{%- if forloop.last -%}{%- else -%},{%- endif -%}
+        {%- endfor -%}
+    ]
+}
