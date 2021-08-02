@@ -1,7 +1,9 @@
 ---
 title: Trans Lifeline
 href: https://translifeline.org
-category: lgbtqia+
+categories:
+  - lgbtqia+
+  - mental-health
 phones:
   primary:
     display: (877) 565-8860
