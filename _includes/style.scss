@@ -75,7 +75,7 @@ button, .buttons a {
     padding: 0.5em;
     border-radius: 3px;
     text-decoration: none;
-    box-shadow: 2px 2px 0 0 black;
+    box-shadow: 2px 2px 0 0 $font-color;
     margin: 0.5em;
     height: 2em;
 }
@@ -197,6 +197,14 @@ h3 {
     }
 
     .theme-toggle {
-        box-shadow: 2px 2px 0 0 white;
+        box-shadow: 2px 2px 0 0 $font-color;
+    }
+
+    button, .buttons a {
+        box-shadow: 2px 2px 0 0 $font-color;
+    }
+
+    .resource, form, details {
+        border: 1px solid $font-color;
     }
 }
