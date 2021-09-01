@@ -2,6 +2,6 @@
 ---
 
 {% capture include_to_scssify %}
-    {% include style.css %}
+    {% include style.scss %}
 {% endcapture %}
 {{ include_to_scssify | scssify | strip_newlines }}

@@ -1,0 +1,210 @@
+$background-color: white;
+$font-color: black;
+$primary-color: cyan;
+$secondary-color: #ff0080;
+
+* {
+    box-sizing: border-box;
+}
+  
+:root {
+    font-family: helvetica, arial, sans-serif;
+    transition: background-color ease-in 250ms;
+    background-color: $background-color;
+    color: $font-color;
+}
+
+body {
+    margin: 0;
+}
+
+h1 a {
+    font-weight: bold;
+    color: $secondary-color;
+	text-decoration: line-through;
+    text-align: center;
+}
+
+a {
+    color: $secondary-color;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30em;
+    margin: auto;
+}
+
+@media (max-width: 33em) {
+    .container {
+        width: 95%;
+    }
+}
+
+.phones {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.phones > a {
+    margin-bottom: 1em;
+}
+
+.phone-icon {
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    color: $font-color;
+    fill: $background-color;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button, .buttons a {
+    background: $primary-color;
+    font-weight: 600;
+    color: black;
+    padding: 0.5em;
+    border-radius: 3px;
+    text-decoration: none;
+    box-shadow: 2px 2px 0 0 $font-color;
+    margin: 0.5em;
+    height: 2em;
+}
+
+button:hover, .buttons a:hover {
+    background: lightblue;
+}
+
+button:active, .buttons a:active {
+    box-shadow: none;
+}
+
+.resource, form, details {
+    border: 1px solid $font-color;
+    border-radius: 3px;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-bottom: 1em;
+}
+
+section > header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.categories {
+    margin-top: 1em;
+}
+
+form input {
+    width: 100%;
+}
+
+form textarea {
+    width: 100%;
+}
+
+button {
+    font-size: 1em;
+    outline: none;
+    border: none;
+}
+
+details {
+    padding: 1em;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+details > p:last-of-type {
+    margin-bottom: 0;
+}
+
+summary {
+    cursor: pointer;
+}
+
+#error {
+    color: red;
+}
+
+h3 {
+    padding-top: 40px;
+    margin-top: -20px;
+}
+
+.theme-toggle {
+    cursor: pointer;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    right: 1.5rem;
+    bottom: 1rem;
+    border: 2px solid black;
+    background-color: white;
+    box-shadow: 2px 2px 0 0 $font-color;
+    transition: box-shadow ease-in 250ms;
+    border-radius: 100%;
+    height: 34px;
+    width: 38px;
+    padding: 0;
+}
+
+.theme-toggle:focus {
+    background-color: white;
+}
+
+.theme-toggle-icon {
+    height: 26px;
+    width: 26px;
+    display: flex;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.theme-toggle-icon {
+    background-image: url('/icons/light-theme.svg');
+}
+
+
+:root:not(.light) {
+    $background-color: black;
+    $font-color: white;
+
+    body {
+        background-color: $background-color;
+        color: $font-color;
+    }
+
+    .resource {
+        border-color: $font-color;
+    }
+
+    .phone-icon {
+        color: $font-color;
+        fill: $background-color;
+    }
+
+    .theme-toggle {
+        box-shadow: 2px 2px 0 0 $font-color;
+    }
+
+    button, .buttons a {
+        box-shadow: 2px 2px 0 0 $font-color;
+    }
+
+    .resource, form, details {
+        border: 1px solid $font-color;
+    }
+}
