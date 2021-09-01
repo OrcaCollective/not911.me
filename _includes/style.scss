@@ -9,13 +9,13 @@ $secondary-color: #ff0080;
   
 :root {
     font-family: helvetica, arial, sans-serif;
-    transition: background-color ease-in 250ms;
     background-color: $background-color;
     color: $font-color;
 }
 
 body {
     margin: 0;
+    transition: background-color ease-in 250ms;
 }
 
 h1 a {
@@ -151,18 +151,18 @@ h3 {
     align-items: center;
     right: 1.5rem;
     bottom: 1rem;
-    border: 2px solid black;
-    background-color: white;
+    border: 2px solid $font-color;
+    background-color: $font-color;
     box-shadow: 2px 2px 0 0 $font-color;
-    transition: box-shadow ease-in 250ms;
+    transition: border ease-in 250ms, background-color ease-in 250ms, box-shadow ease-in 250ms;
     border-radius: 100%;
     height: 34px;
     width: 38px;
     padding: 0;
 }
 
-.theme-toggle:focus {
-    background-color: white;
+.theme-toggle:hover {
+    background: gray
 }
 
 .theme-toggle-icon {
@@ -174,7 +174,11 @@ h3 {
 }
 
 .theme-toggle-icon {
-    background-image: url('/icons/light-theme.svg');
+    background-image: url('/icons/dark-theme.svg');
+}
+
+.phone-icon {
+    background-image: url('/icons/phone-dark.svg');
 }
 
 
@@ -185,6 +189,7 @@ h3 {
     body {
         background-color: $background-color;
         color: $font-color;
+        transition: background-color ease-in 250ms;
     }
 
     .resource {
@@ -192,12 +197,22 @@ h3 {
     }
 
     .phone-icon {
-        color: $font-color;
-        fill: $background-color;
+        background-image: url('/icons/phone-light.svg');
     }
 
     .theme-toggle {
+        border: 2px solid $font-color;
+        background-color: $font-color;
         box-shadow: 2px 2px 0 0 $font-color;
+    }
+
+    /* This has to be re-defined here otherwise it's ignored */
+    .theme-toggle:hover {
+        background: gray
+    }
+
+    .theme-toggle-icon {
+        background-image: url('/icons/light-theme.svg');
     }
 
     button, .buttons a {
