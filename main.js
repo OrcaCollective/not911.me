@@ -1,6 +1,6 @@
 
 (function() {
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const themeToggleButton = document.querySelector('.theme-toggle');
     const darkSchemePreference = prefersDarkScheme ? 'dark' : 'light';
     const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : darkSchemePreference;
@@ -9,7 +9,7 @@
     if (currentTheme === 'dark') {
         rootElement.classList.toggle('dark');
         themeToggleButton.setAttribute('aria-pressed', true);
-    }  else if (currentTheme == 'light') {
+    }  else if (currentTheme === 'light') {
         rootElement.classList.toggle('light');
         themeToggleButton.setAttribute('aria-pressed', false);
     }
