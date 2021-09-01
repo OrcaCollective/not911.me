@@ -177,28 +177,26 @@ h3 {
     background-image: url('/icons/light-theme.svg');
 }
 
-/** theme specific css **/
-@media (prefers-color-scheme: dark) {
-    :root:not(.light) {
-        $background-color: black;
-        $font-color: white;
 
-        body {
-            background-color: $background-color;
-            color: $font-color;
-        }
+:root:not(.light) {
+    $background-color: black;
+    $font-color: white;
 
-        .resource {
-            border-color: $font-color;
-        }
+    body {
+        background-color: $background-color;
+        color: $font-color;
+    }
 
-        .phone-icon {
-            color: $font-color;
-            fill: $background-color;
-        }
+    .resource {
+        border-color: $font-color;
+    }
 
-        .theme-toggle {
-            box-shadow: 2px 2px 0 0 white;
-        }
+    .phone-icon {
+        color: $font-color;
+        fill: $background-color;
+    }
+
+    .theme-toggle {
+        box-shadow: 2px 2px 0 0 white;
     }
 }
