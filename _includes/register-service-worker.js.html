@@ -1,12 +1,18 @@
 <script>
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/service-worker.js", { "scope": "." }).then(
-            (registration) => 
-                console.log(
-                    "Service worker registration succeeded:",
-                    registration
-                ),
-            (error) => console.log("Service worker registration failed:", error),
-        );
-    }
+	if ("serviceWorker" in navigator) {
+		if (navigator.serviceWorker.controller) {
+			console.log('Service worker already registered.');
+		} else {
+			// Register the serviceworker
+			navigator.serviceWorker.register("/service-worker.js", { "scope": "." }).then(
+				(registration) => {
+					console.log(
+						"Service worker registration succeeded:",
+						registration
+					);
+				},
+				(error) => console.log("Service worker registration failed: ", error),
+			);
+		}
+	}
 </script>
