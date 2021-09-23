@@ -42,6 +42,13 @@ self.addEventListener("fetch", (event) => {
 	if (request.method === 'GET') {
 		event.respondWith(
 			fetch(request)
+			.then(function(response) {
+				return caches.open(cacheKey).then(function(cache) {
+					return cache.put(event.request, response.clone()).then(function() {
+						return response;
+					})
+				})
+			})
 			.catch((err) => {
 				console.error(err);
 				return caches.open(cacheKey).then((cache) => {
