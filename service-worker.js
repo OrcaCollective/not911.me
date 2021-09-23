@@ -2,25 +2,26 @@
 ---
 const cityNames = [
 	{%- for city in site.cities -%}
-		"{{ city.slug }}",
+		'{{ city.slug }}',
 	{%- endfor -%}
 ];
 
 // Add/remove/edit files to cache here
+// NOTE: This is really brittle; should be programmatic
 const cachedFiles = [
-	"./",
-	"index.html",
-	"main.js",
-	"service-worker.js",
-	"not911.webmanifest",
-	"404.html",
-	"style.css",
-	"apple-touch-icon.png",
-	"icons/dark-theme.svg",
-	"icons/light-theme.svg",
-	"icons/phone-dark.svg",
-	"icons/phone-light.svg",
-	"favicon.ico",
+	'./',
+	'index.html',
+	'main.js',
+	'service-worker.js',
+	'not911.webmanifest',
+	'404.html',
+	'style.css',
+	'apple-touch-icon.png',
+	'icons/dark-theme.svg',
+	'icons/light-theme.svg',
+	'icons/phone-dark.svg',
+	'icons/phone-light.svg',
+	'favicon.ico',
 	// include all cities in both their `.html` and non `.html` forms
 	...cityNames,
 	...cityNames.map(name => `${name}.html`)
@@ -28,7 +29,7 @@ const cachedFiles = [
 
 const cacheKey = '{{ site.version }}';
 
-self.addEventListener("install", (event) => {
+self.addEventListener('install', (event) => {
 	event.waitUntil(
 		caches.open(cacheKey).then((cache) => {
 			// Cache all the files listed above
@@ -37,7 +38,20 @@ self.addEventListener("install", (event) => {
 	);
 });
 
-self.addEventListener("fetch", (event) => {
+self.addEventListener('activate', event => {
+  // Delete any cache that isn't the most current
+  event.waitUntil(
+    caches.keys().then(keys => Promise.all(
+      keys.map(key => {
+        if (key !== cacheKey) {
+          return caches.delete(key);
+        }
+      })
+    ))
+  );
+});
+
+self.addEventListener('fetch', (event) => {
 	const { request } = event;
 	if (request.method === 'GET') {
 		event.respondWith(
