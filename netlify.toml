@@ -2,3 +2,7 @@
   base = "/"
   publish = "/_site"
   command = "bundle exec jekyll build"
+[[headers]]
+  for = "/serviceworker.js"
+  [headers.values]
+    cache-control = "max-age=0,no-cache,no-store,must-revalidate"

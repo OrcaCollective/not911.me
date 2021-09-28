@@ -1,66 +1,74 @@
 ---
 ---
 const cityNames = [
-    {%- for city in site.cities -%}
-        "{{ city.slug }}",
-    {%- endfor -%}
+	{%- for city in site.cities -%}
+		'{{ city.slug }}',
+	{%- endfor -%}
 ];
 
-const version = 'v{{ site.version }}';
+// Add/remove/edit files to cache here
+// NOTE: This is really brittle; should be programmatic
+const cachedFiles = [
+	'./',
+	'index.html',
+	'main.js',
+	'service-worker.js',
+	'not911.webmanifest',
+	'404.html',
+	'style.css',
+	'apple-touch-icon.png',
+	'icons/dark-theme.svg',
+	'icons/light-theme.svg',
+	'icons/phone-dark.svg',
+	'icons/phone-light.svg',
+	'favicon.ico',
+	// include all cities in both their `.html` and non `.html` forms
+	...cityNames,
+	...cityNames.map(name => `${name}.html`)
+];
 
-self.addEventListener("install", (event) => {
-    self.skipWaiting();
+const cacheKey = '{{ site.version }}';
 
-    event.waitUntil(
-        caches.open(version).then((cache) => {
-            return cache.addAll([
-                "./",
-                "index.html",
-                "service-worker.js",
-                "not911.webmanifest",
-                "404.html",
-                "style.css",
-                "phone.svg",
-                "apple-touch-icon.png",
-                "favicon.ico",
-                // include all cities in both their `.html` and non `.html` forms
-                ...cityNames,
-                ...cityNames.map(name => `${name}.html`)
-            ]);
-        })
-    );
+self.addEventListener('install', (event) => {
+	event.waitUntil(
+		caches.open(cacheKey).then((cache) => {
+			// Cache all the files listed above
+			return cache.addAll(cachedFiles);
+		})
+	);
 });
 
-self.addEventListener("fetch", (event) => {
-    event.respondWith(
-        caches.match(event.request).then(r => {
-            if (r) {
-                return r;
-            }
-            return fetch(event.request.clone())
-                .then(response => {
-                    if (response.status < 400) {
-                        caches.open(version).then(cache => cache.put(event.request, response));
-                        return response.clone();
-                    } else {
-                        const req404 = new Request("/404.html");
-                        return caches.match(req404);
-                    }
-                })
-        })
-    )
-});
-
-self.addEventListener('activate', (event) => {
-    event.waitUntil(
-      caches.keys().then((cacheNames) => {
-        return Promise.all(
-            cacheNames.filter((cacheName) => {
-                return cacheName !== version;
-            }).map((cacheName) => {
-                return caches.delete(cacheName);
-            })
-        );
+self.addEventListener('activate', event => {
+  // Delete any cache that isn't the most current
+  event.waitUntil(
+    caches.keys().then(keys => Promise.all(
+      keys.map(key => {
+        if (key !== cacheKey) {
+          return caches.delete(key);
+        }
       })
-    );
+    ))
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+	const { request } = event;
+	if (request.method === 'GET') {
+		event.respondWith(
+			fetch(request)
+			.then(function(response) {
+				return caches.open(cacheKey).then(function(cache) {
+					return cache.put(event.request, response.clone()).then(function() {
+						return response;
+					})
+				})
+			})
+			.catch((err) => {
+				console.error(err);
+				return caches.open(cacheKey).then((cache) => {
+					return cache.match(request);
+				});
+			})
+		)
+	}
 });
