@@ -1,26 +1,42 @@
-:root, :root.light {
+:root,
+:root.light {
     --background-color: white;
     --font-color: black;
     --primary-color: cyan;
     --secondary-color: #ff0080;
+    /* Note that the names of the icons are the opposite to the scheme they're used in */
+    --theme-toggle-icon: url("/icons/dark-theme.svg");
+    --phone-icon: url("/icons/phone-dark.svg");
 }
 
 :root.dark {
     --background-color: black;
     --font-color: white;
+    --theme-toggle-icon: url("/icons/light-theme.svg");
+    --phone-icon: url("/icons/phone-light.svg");
 }
 
 @media (prefers-color-scheme: dark) {
     :root:not(.light) {
         --background-color: black;
         --font-color: white;
+        --theme-toggle-icon: url("/icons/light-theme.svg");
+        --phone-icon: url("/icons/phone-light.svg");
     }
+}
+
+.theme-toggle-icon {
+    background-image: var(--theme-toggle-icon);
+}
+
+.phone-icon {
+    background-image: var(--phone-icon);
 }
 
 * {
     box-sizing: border-box;
 }
-  
+
 :root {
     font-family: helvetica, arial, sans-serif;
     background-color: var(--background-color);
@@ -33,14 +49,13 @@ body {
 }
 
 h1 a {
-    font-weight: bold;
-    color: var(--secondary-color);
-	text-decoration: line-through;
+    text-decoration: line-through;
     text-align: center;
 }
 
 a {
     color: var(--secondary-color);
+    font-weight: bold;
 }
 
 .container {
@@ -82,7 +97,8 @@ a {
     justify-content: center;
 }
 
-button, .buttons a {
+button,
+.buttons a {
     background: var(--primary-color);
     font-weight: 600;
     color: black;
@@ -94,15 +110,19 @@ button, .buttons a {
     height: 2em;
 }
 
-button:hover, .buttons a:hover {
+button:hover,
+.buttons a:hover {
     background: lightblue;
 }
 
-button:active, .buttons a:active {
+button:active,
+.buttons a:active {
     box-shadow: none;
 }
 
-.resource, form, details {
+.resource,
+form,
+details {
     border: 1px solid var(--font-color);
     border-radius: 3px;
     padding-left: 1em;
@@ -168,7 +188,8 @@ h3 {
     border: 2px solid var(--font-color);
     background-color: var(--font-color);
     box-shadow: 2px 2px 0 0 var(--font-color);
-    transition: border ease-in 250ms, background-color ease-in 250ms, box-shadow ease-in 250ms;
+    transition: border ease-in 250ms, background-color ease-in 250ms,
+        box-shadow ease-in 250ms;
     border-radius: 100%;
     height: 34px;
     width: 38px;
@@ -176,7 +197,7 @@ h3 {
 }
 
 .theme-toggle:hover {
-    background: gray
+    background: gray;
 }
 
 .theme-toggle-icon {
@@ -185,12 +206,4 @@ h3 {
     display: flex;
     background-repeat: no-repeat;
     background-size: 100%;
-}
-
-.theme-toggle-icon {
-    background-image: url('/icons/dark-theme.svg');
-}
-
-.phone-icon {
-    background-image: url('/icons/phone-dark.svg');
 }
