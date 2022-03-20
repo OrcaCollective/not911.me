@@ -1,0 +1,7 @@
+---
+---
+
+{% capture include_to_scssify %}
+    {% include new-resource.scss %}
+{% endcapture %}
+{{ include_to_scssify | scssify | strip_newlines }}
