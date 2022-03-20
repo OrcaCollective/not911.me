@@ -12,7 +12,8 @@ stylesheet: /new-resource.css
     Thank you for taking an interest in helping us expand this list of resources. To request a new resource be added, please fill the form below. Please note that the information sent in the form is not private and can be read by our web host, Netlify. There's nothing we can do about this at this time without significantly increasing the cost to run this website. If you'd prefer to contact us directly, please email us at <a href="mailto:techblocsea@protonmail.com">techblocsea@protonmail.com</a>.
 </p>
 
-<form name="new-resource" data-netlify="true" method="POST">
+<!-- This form won't work locally but netlify transforms the `action` into a "success" page that it redirects to after handling the POST request -->
+<form name="new-resource" data-netlify="true" action="/new-resource-thanks" method="POST">
     <p>An asterisk (*) denotes a required field</p>
     <p>
         <label for="submitter-email">Your Email (optional):</label>
@@ -23,7 +24,8 @@ stylesheet: /new-resource.css
         <label class="required">Resource name: <input type="text" required name="name" /></label>
     </p>
     <p>
-        <label>Resource URL (if available): <input type="url" name="url" /></label>
+        <!-- Don't use type="url" here because it's too strict and requires a schema which some users might not bother to enter and could be confusing -->
+        <label>Resource URL (if available): <input type="text" name="url" /></label>
     </p>
     <p>
         <label class="required" for="phone">Resource phone:</label>
