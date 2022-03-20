@@ -12,7 +12,7 @@ stylesheet: /new-resource.css
     Thank you for taking an interest in helping us expand this list of resources. To request a new resource be added, please fill the form below. Please note that the information sent in the form is not private and can be read by our web host, Netlify. There's nothing we can do about this at this time without significantly increasing the cost to run this website. If you'd prefer to contact us directly, please email us at <a href="mailto:techblocsea@protonmail.com">techblocsea@protonmail.com</a>.
 </p>
 
-<form name="new-resource" data-netifly="true" method="POST">
+<form name="new-resource" data-netlify="true" method="POST">
     <p>An asterisk (*) denotes a required field</p>
     <p>
         <label for="submitter-email">Your Email (optional):</label>
