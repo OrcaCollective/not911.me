@@ -29,7 +29,7 @@ stylesheet: /new-resource.css
     </p>
     <p>
         <label class="required" for="phone">Resource phone:</label>
-        <aside>If there are additional phone numbers, please list them in the dscription</aside>
+        <aside>If there are additional phone numbers, please list them in the description</aside>
         <input id="phone" type="tel" required name="phone" />
     </p>
     <p>
@@ -39,7 +39,7 @@ stylesheet: /new-resource.css
     </p>
     <p>
         <label class="required" for="category">Resource category:</label>
-        <aside>Please choose at least one. To select multiple on PC, hold control (or command if on a mac) and click on each option you wish to select.</aside>
+        <aside>Please choose at least one. To select multiple, hold Control (on PC), or Command (on Mac), and click on each option you wish to select.</aside>
         <select id="category" name="category" multiple required>
             {% for resource_type in site.resource_types %}
                 <option value="{{ resource_type.slug }}">{{ resource_type.title }}</option>
