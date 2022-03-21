@@ -1,16 +1,46 @@
-$background-color: white;
-$font-color: black;
-$primary-color: cyan;
-$secondary-color: #ff0080;
+:root,
+:root.light {
+    --background-color: white;
+    --font-color: black;
+    --primary-color: cyan;
+    --secondary-color: #ff0080;
+    /* Note that the names of the icons are the opposite to the scheme they're used in */
+    --theme-toggle-icon: url("/icons/dark-theme.svg");
+    --phone-icon: url("/icons/phone-dark.svg");
+}
+
+:root.dark {
+    --background-color: black;
+    --font-color: white;
+    --theme-toggle-icon: url("/icons/light-theme.svg");
+    --phone-icon: url("/icons/phone-light.svg");
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not(.light) {
+        --background-color: black;
+        --font-color: white;
+        --theme-toggle-icon: url("/icons/light-theme.svg");
+        --phone-icon: url("/icons/phone-light.svg");
+    }
+}
+
+.theme-toggle-icon {
+    background-image: var(--theme-toggle-icon);
+}
+
+.phone-icon {
+    background-image: var(--phone-icon);
+}
 
 * {
     box-sizing: border-box;
 }
-  
+
 :root {
     font-family: helvetica, arial, sans-serif;
-    background-color: $background-color;
-    color: $font-color;
+    background-color: var(--background-color);
+    color: var(--font-color);
 }
 
 body {
@@ -19,14 +49,13 @@ body {
 }
 
 h1 a {
-    font-weight: bold;
-    color: $secondary-color;
-	text-decoration: line-through;
+    text-decoration: line-through;
     text-align: center;
 }
 
 a {
-    color: $secondary-color;
+    color: var(--secondary-color);
+    font-weight: bold;
 }
 
 .container {
@@ -58,8 +87,8 @@ a {
     height: 24px;
     width: 24px;
     display: inline-block;
-    color: $font-color;
-    fill: $background-color;
+    color: var(--font-color);
+    fill: var(--background-color);
 }
 
 .buttons {
@@ -68,28 +97,33 @@ a {
     justify-content: center;
 }
 
-button, .buttons a {
-    background: $primary-color;
+button,
+.buttons a {
+    background: var(--primary-color);
     font-weight: 600;
     color: black;
     padding: 0.5em;
     border-radius: 3px;
     text-decoration: none;
-    box-shadow: 2px 2px 0 0 $font-color;
+    box-shadow: 2px 2px 0 0 var(--font-color);
     margin: 0.5em;
     height: 2em;
 }
 
-button:hover, .buttons a:hover {
+button:hover,
+.buttons a:hover {
     background: lightblue;
 }
 
-button:active, .buttons a:active {
+button:active,
+.buttons a:active {
     box-shadow: none;
 }
 
-.resource, form, details {
-    border: 1px solid $font-color;
+.resource,
+form,
+details {
+    border: 1px solid var(--font-color);
     border-radius: 3px;
     padding-left: 1em;
     padding-right: 1em;
@@ -151,10 +185,11 @@ h3 {
     align-items: center;
     right: 1.5rem;
     bottom: 1rem;
-    border: 2px solid $font-color;
-    background-color: $font-color;
-    box-shadow: 2px 2px 0 0 $font-color;
-    transition: border ease-in 250ms, background-color ease-in 250ms, box-shadow ease-in 250ms;
+    border: 2px solid var(--font-color);
+    background-color: var(--font-color);
+    box-shadow: 2px 2px 0 0 var(--font-color);
+    transition: border ease-in 250ms, background-color ease-in 250ms,
+        box-shadow ease-in 250ms;
     border-radius: 100%;
     height: 34px;
     width: 38px;
@@ -162,7 +197,7 @@ h3 {
 }
 
 .theme-toggle:hover {
-    background: gray
+    background: gray;
 }
 
 .theme-toggle-icon {
@@ -171,55 +206,4 @@ h3 {
     display: flex;
     background-repeat: no-repeat;
     background-size: 100%;
-}
-
-.theme-toggle-icon {
-    background-image: url('/icons/dark-theme.svg');
-}
-
-.phone-icon {
-    background-image: url('/icons/phone-dark.svg');
-}
-
-
-:root:not(.light) {
-    $background-color: black;
-    $font-color: white;
-
-    body {
-        background-color: $background-color;
-        color: $font-color;
-        transition: background-color ease-in 250ms;
-    }
-
-    .resource {
-        border-color: $font-color;
-    }
-
-    .phone-icon {
-        background-image: url('/icons/phone-light.svg');
-    }
-
-    .theme-toggle {
-        border: 2px solid $font-color;
-        background-color: $font-color;
-        box-shadow: 2px 2px 0 0 $font-color;
-    }
-
-    /* This has to be re-defined here otherwise it's ignored */
-    .theme-toggle:hover {
-        background: gray
-    }
-
-    .theme-toggle-icon {
-        background-image: url('/icons/light-theme.svg');
-    }
-
-    button, .buttons a {
-        box-shadow: 2px 2px 0 0 $font-color;
-    }
-
-    .resource, form, details {
-        border: 1px solid $font-color;
-    }
 }
