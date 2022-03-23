@@ -44,6 +44,8 @@
 }
 
 body {
+    /* fixes big white area underneath shorter dark-mode pages */
+    min-height: 100vh;
     margin: 0;
     transition: background-color ease-in 250ms;
 }

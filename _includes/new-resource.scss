@@ -1,0 +1,32 @@
+aside {
+    margin-top: 0;
+    font-size: 0.75rem;
+    font-weight: bold
+}
+
+form p {
+    margin-bottom: 0;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin: 0.25rem;
+}
+
+form .flex-row input {
+    width: initial;
+    margin: 0 0.5rem 0 0;
+}
+
+form .flex-row label {
+    padding-top: 0.25rem;
+}
+
+.required::before {
+    content: '* ';
+    color: red;
+}
